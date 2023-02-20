@@ -1,4 +1,4 @@
-package kodlama.io.rentACar.webApi.controllers;
+package kodlama.io.rentACar.api.controllers;
 
 import kodlama.io.rentACar.business.abstracts.BrandService;
 import kodlama.io.rentACar.business.requests.CreateBrandRequest;
@@ -15,20 +15,20 @@ import java.util.List;
 @RequestMapping("/api/brands")
 public class BrandsController {
 
-    BrandService brandService;
+    private final BrandService brandService;
 
     @Autowired
     public BrandsController(BrandService brandService) {
         this.brandService = brandService;
     }
 
-    @GetMapping("/all")
-    public List<GetAllBrandsResponse> getAll(){
+    @GetMapping()
+    public List<GetAllBrandsResponse> getAll() {
         return brandService.getAll();
     }
 
-    @PostMapping("/add")
-    public void add(CreateBrandRequest brandRequest){
+    @PostMapping
+    public void add(CreateBrandRequest brandRequest) {
         this.brandService.add(brandRequest);
     }
 
