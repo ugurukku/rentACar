@@ -38,16 +38,33 @@ public class BrandManager implements BrandService {
         return mapperService
                 .forResponse()
                 .map(brandRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("not found!"))
-                , GetByIdBrandResponse.class);
+                        , GetByIdBrandResponse.class);
     }
 
     @Override
     public void updateBrand(UpdateBrandRequest updateBrandRequest) {
-        brandRepository.save(mapperService.forRequest().map(updateBrandRequest,Brand.class));
+        boolean exist = brandRepository.existsById(updateBrandRequest.getId());
+        if (!exist) {
+            throw new IllegalArgumentException("not found!");
+        }
+        brandRepository.save(mapperService.forRequest().map(updateBrandRequest, Brand.class));
     }
 
     @Override
     public void add(CreateBrandRequest createBrandRequest) {
-        brandRepository.save(mapperService.forRequest().map(createBrandRequest,Brand.class));
+        brandRepository.save(mapperService.forRequest().map(createBrandRequest, Brand.class));
+    }
+
+    @Override
+    public void deleteBrandById(int id) {
+        boolean exist = brandRepository.existsById(id);
+
+        if (!exist) {
+            throw new IllegalArgumentException("not found!");
+        } else {
+            brandRepository.deleteById(id);
+        }
+
+
     }
 }
