@@ -55,7 +55,11 @@ public class BrandManager implements BrandService {
 
     @Override
     public void add(CreateBrandRequest createBrandRequest) {
-        brandRepository.save(mapperService.forRequest().map(createBrandRequest, Brand.class));
+        businessRules.checkIfBrandNameExists(createBrandRequest.getName());
+
+        brandRepository.save(mapperService
+                .forRequest()
+                .map(createBrandRequest, Brand.class));
     }
 
     @Override
