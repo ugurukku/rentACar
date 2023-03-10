@@ -15,6 +15,6 @@ public class CreateBrandRequest {
 
     @NotNull
     @NotBlank
-    @Size(min = 3,max=20)
+    @Size(min = 3,max=20,message = "Brand name must be at least 3 character")
     private String name;
 }

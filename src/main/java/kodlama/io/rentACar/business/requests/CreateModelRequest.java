@@ -15,11 +15,9 @@ public class CreateModelRequest {
 
     @NotNull
     @NotBlank
-    @Size(min = 3,max=20)
+    @Size(min = 3,max=20,message = "Model name must be at least 3 character")
     private String name;
 
-    @NotNull
-    @NotBlank
     private int brandId;
 
 }
