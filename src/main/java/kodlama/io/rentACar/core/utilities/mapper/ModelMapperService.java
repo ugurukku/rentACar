@@ -1,4 +1,4 @@
-package kodlama.io.rentACar.core.utilities;
+package kodlama.io.rentACar.core.utilities.mapper;
 
 import org.modelmapper.ModelMapper;
 
