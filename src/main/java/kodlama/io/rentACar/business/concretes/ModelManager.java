@@ -5,6 +5,7 @@ import kodlama.io.rentACar.business.requests.CreateModelRequest;
 import kodlama.io.rentACar.business.responses.GetAllModelsResponse;
 import kodlama.io.rentACar.core.utilities.ModelMapperService;
 import kodlama.io.rentACar.dataAccess.abstracts.ModelRepository;
+import kodlama.io.rentACar.entities.concretes.Model;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
@@ -30,6 +31,10 @@ public class ModelManager implements ModelService {
 
     @Override
     public void add(CreateModelRequest createModelRequest) {
-
+        repository
+                .save(mapperService
+                        .forRequest()
+                        .map(createModelRequest, Model.class)
+                );
     }
 }
