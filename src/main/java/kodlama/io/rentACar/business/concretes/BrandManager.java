@@ -20,7 +20,7 @@ public class BrandManager implements BrandService {
 
     private final ModelMapperService mapperService;
 
-    private BrandRepository brandRepository;
+    private final BrandRepository brandRepository;
 
     @Override
     public List<GetAllBrandsResponse> getAll() {
